@@ -52,3 +52,10 @@
   margin-left: clamp(0.5rem, 2vw, 1.5rem);
   white-space: nowrap;
 }
+
+body {
+  background-image: var(--background-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: repeat;
+}
