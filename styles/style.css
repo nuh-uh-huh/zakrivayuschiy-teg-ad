@@ -1,61 +1,85 @@
 /* Здесь вы напишете основную часть стилей страницы.
 
 Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
+✦ theme-dark — класс тёмной темы
+✦ theme-light — класс светлой темы
 ✦ like-icon — для svg-иконки анимированного сердца
 ✦ card__like-button — для кнопки Like рядом с иконкой
 ✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
 ✦ button__text — для обозначения текстового элемента внутри кнопки
-
 */
+
+@supports (-webkit-text-stroke: 1px #fff) or (text-stroke: 1px #fff) {
+  .card__image-label {
+    text-stroke: 1px var(--stroke-color);
+    -webkit-text-stroke: 1px var(--stroke-color);
+    text-shadow: none;
+  }
+}
 
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
-}
 
-/* Основные переменные шрифтов */
-:root {
-  --font-primary: 'Inter', system-ui, sans-serif;
-  --font-accent: 'PressStart2P', monospace;
+  font-family: var(--main-font), sans-serif;
+  font-variation-settings: 'wght' 400;
 
-  /* Толщины для вариативного Inter */
-  --font-weight-text: 400;
-  --font-weight-heading: 700;
+  background-image: repeating-linear-gradient(
+      to bottom,
+      var(--bg-color) 0px 2px,
+      transparent 2px 4px
+    ),
+    repeating-linear-gradient(
+      to right,
+      var(--bg-color) 0 2px,
+      transparent 2px 4px
+    ),
+    linear-gradient(
+      180deg,
+      var(--linear-gradient-first) 0%,
+      var(--linear-gradient-second) 100%
+    );
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .header {
-  width: var(--header-max-width);
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-family: var(--accent-font), sans-serif;
+  font-weight: 400;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem) 0 12px;
+
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+.content {
   margin: 0 auto;
-  padding: clamp(1rem, 2vw, 2rem);
-  box-sizing: border-box;
+  max-inline-size: 696px;
+  margin-block-start: 100px;
 }
 
-/* Для мобильных при ширине экрана меньше 480px растягиваем на всю ширину */
-@media (max-width: 480px) {
-  .header {
-    width: 100vw;
-    padding: clamp(0.5rem, 3vw, 1rem);
-  }
+.theme-menu__item {
+  margin-block-end: 9px;
 }
 
-/* Логотип резиновый */
-.header__logo {
-  width: clamp(80px, 10vw, 150px);
-  height: auto;
-}
-
-/* Заголовок в шапке резиновый */
 .header__title {
-  font-size: clamp(1.5rem, 2vw + 0.5rem, 2.5rem);
-  margin-left: clamp(0.5rem, 2vw, 1.5rem);
-  white-space: nowrap;
+  font-family: var(--accent-font), sans-serif;
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  text-decoration: none;
 }
 
-body {
-  background-image: var(--background-gradient);
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: repeat;
+.header__description {
+  font-family: var(--accent-font), sans-serif;
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  margin-block-end: 4px;
 }
